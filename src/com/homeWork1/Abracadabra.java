@@ -67,6 +67,5 @@ public class Abracadabra {
         for (int i = 0; i <= w; i++)
             System.out.print('*');
         System.out.println();
-
     }
 }
