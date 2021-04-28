@@ -55,17 +55,23 @@ public class Balda {
 
         String word1= "word1";
         String word2= "word2";
-        while(!word1.contains(" ") && !word1.isEmpty() && !word2.contains(" ") && !word2.isEmpty() )
+        int numSimbolsPlayerOne = 0;
+        int numSimbolsPlayerTwo = 0;
+
+        while(!word1.isEmpty() || !word2.isEmpty())
         {
 
             System.out.println("Player one enter your word");
             word1 = scan.nextLine();
-            checkWord(word1, letters, word, firsrPlayer);
+            if (checkWord(word1, letters, word, firsrPlayer)) {
+                numSimbolsPlayerOne += word1.length();
+            }
 
             System.out.println("Player two enter your word");
             word2 = scan.nextLine();
-            checkWord(word2, letters, word, secondPlayer);
-
+            if (checkWord(word2, letters, word, secondPlayer)) {
+                numSimbolsPlayerTwo += word2.length();
+            }
         }
 
         System.out.println("Player one has " + firsrPlayer.size() + " words");
@@ -76,16 +82,20 @@ public class Balda {
         System.out.print("Words:" + secondPlayer);
         System.out.println();
 
-        if (firsrPlayer.size() > secondPlayer.size()) {
-            System.out.println("Conngratulations to the FIRST player to win");
+        if (numSimbolsPlayerOne > numSimbolsPlayerTwo) {
+            System.out.println("Conngratulations to the FIRST player to win on score "
+            + numSimbolsPlayerOne + ":" + numSimbolsPlayerTwo);
         }
-        else if (firsrPlayer.size() < secondPlayer.size()){
-                System.out.println("Conngratulations to the SECOND player to win");
+        else if (numSimbolsPlayerOne < numSimbolsPlayerTwo){
+                System.out.println("Conngratulations to the SECOND player to win on score "
+                        + numSimbolsPlayerTwo + ":" + numSimbolsPlayerOne);
          }
         else {
-            System.out.println("The winner is BALDA");
+            System.out.println("The winner is BALDA!!! \n" +
+                    "Number of player characters = " + numSimbolsPlayerOne);
         }
 
     }
 
 }
+
