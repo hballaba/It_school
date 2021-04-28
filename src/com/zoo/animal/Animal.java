@@ -3,6 +3,8 @@ package com.zoo.animal;
 import com.zoo.exception.AgeException;
 import com.zoo.exception.NameException;
 
+import java.util.Objects;
+
 public abstract class Animal{
 
     Animal(String name) {
@@ -30,5 +32,25 @@ public abstract class Animal{
     public abstract void setAge(int age) throws AgeException;
     public abstract void setName(String name) throws NameException;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Animal)) return false;
+        Animal animal = (Animal) o;
+        return getAge() == animal.getAge() &&
+                Objects.equals(getName(), animal.getName());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge());
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
