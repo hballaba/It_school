@@ -31,18 +31,20 @@ public class SimpleDividers implements Comparable<SimpleDividers> {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "SimpleDividers{" +
+                "number=" + number +
+                '}';
+    }
+
     private LinkedList<Integer> multiply(Integer num){
         LinkedList<Integer> vector = new LinkedList<>();
-        int n = (int)Math.sqrt(num);
-        for (int i = 1; i <= n; i++){
+        for (int i = 1; i <= num; i++){
             if(isSimple(i)){
                 vector.add(i);
-                System.out.println(i + " Yes");
             }
-
         }
-
-
         return vector;
     }
 
@@ -53,26 +55,29 @@ public class SimpleDividers implements Comparable<SimpleDividers> {
         }
         LinkedList<Integer> vector = multiply(ex.getNumber());
         for(int i = 0; i < vector.size(); i++){
-            int t = vector.get(i);
             if(ex.getNumber() % vector.get(i) != 0){
                 vector.remove(i--);
             }
         }
-
-
-        System.out.println(123);
+        count = vector.size();
         return count;
     }
 
+    @Override
     public int compareTo(SimpleDividers ex) {
         if(CountSimpleDividers(this) > CountSimpleDividers(ex)){
             return 1;
         }
-        else if (CountSimpleDividers(this) > CountSimpleDividers(ex)){
+        else if (CountSimpleDividers(this) < CountSimpleDividers(ex)){
             return -1;
         }
-        System.out.println(123);
+//        System.out.println(0);
+        else if (this.number > ex.number){
+            return 1;
+        }
+        else if (this.number < ex.number){
+            return -1;
+        }
         return 0;
-
     }
 }
