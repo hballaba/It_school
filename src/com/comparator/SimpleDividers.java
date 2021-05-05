@@ -71,7 +71,6 @@ public class SimpleDividers implements Comparable<SimpleDividers> {
         else if (CountSimpleDividers(this) < CountSimpleDividers(ex)){
             return -1;
         }
-//        System.out.println(0);
         else if (this.number > ex.number){
             return 1;
         }
