@@ -1,8 +1,13 @@
 package com.zoo;
 
 import com.zoo.animal.*;
+import com.zoo.cage.Cage;
 import com.zoo.exception.AgeException;
 import com.zoo.exception.NameException;
+import com.zoo.exception.ErrorAnimalExeption;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Main {
     public static void main(String[] args) {
@@ -70,5 +75,37 @@ public class Main {
         Pig piggy = new Pig("Piggy");
         piggy.smack();
         piggy.wallowInMud();
+
+        System.out.println();
+        try {
+            Cage cage1 = Cage.createCage();
+            Cage cage2 = Cage.createCage();
+            Cage cage3 = Cage.createCage();
+//            Cage cage4 = Cage.createCage();  /* Exception  */
+            cage1.add(piggy);
+//            cage1.add(piggy); /*  Exception  */
+            cage1.add(sly);
+            cage1.add(fred);
+            cage1.add(burenka);
+            cage1.add(bobik);
+
+//            cage2.add(bars);
+            cage3.add(pushok);
+//            cage1.add(donny);  /* Exception  */
+
+            cage1.delete(bobik);
+            cage1.delete(pushok);
+            System.out.println(cage1.toString());
+            Cage cage4 = null;
+            cage4.add(bobik);
+        }
+        catch (ErrorAnimalExeption ex) {
+            System.err.println(ex.getMessage());
+        }
+        catch ( NullPointerException ex){
+            System.err.println("The object does not exist");
+        }
+        finally {
+        }
     }
 }
